@@ -4,7 +4,7 @@
 
 The description of the project will come **here** later.
 
-You can find the exercises by clicking ![here](https://github.com/kirkeruusalu/software-project/tree/main/exercises)
+You can navigate to exercises by clicking [here](https://github.com/kirkeruusalu/software-project/tree/main/exercises)
 
 
 
