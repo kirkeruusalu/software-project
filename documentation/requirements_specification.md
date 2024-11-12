@@ -6,6 +6,9 @@ This application is a subject progress tracker to help users assess and keep tra
 ## Users
 There is a regular user role, where the current user can create an account by choosing a username and password, and later log into the same account with their information saved. There can be several users. A possible extension would be to have a root user with rights to remove/add other users.
 
+## UI
+The initial UI will be a command-line interface, which will be extended into a GUI as the project progresses.
+
 ## Planned Features
 ### Basic Functionalities
 - When opening the application, the user will see a login screen, where they can either log in with their credentials or create a new account.
