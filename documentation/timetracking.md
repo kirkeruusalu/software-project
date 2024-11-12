@@ -1,5 +1,5 @@
 # Timekeeping
 
-| Date | Time spent | Task worked on |
-|------|------------|----------------|
-|12.11 | 1.5 hour   | Initial requirements definition|
+| Date | Time spent (hours)| Task worked on |
+|------|-------------------|----------------|
+|12.11 | 1.5               | Initial requirements definition|
