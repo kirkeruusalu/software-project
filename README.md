@@ -4,8 +4,9 @@
 This project will be a simple tool to help manage progress across various subjects/skills.
 
 ## Documentation
-You can find the timekeeping document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/timetracking.md)
-You can find the requirement specification document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/requirements_specification.md)
+You can find the timekeeping document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/timetracking.md). 
+
+You can find the requirements specification document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/requirements_specification.md)
 
 ## Weekly exercises
 You can navigate to exercises by clicking [here](https://github.com/kirkeruusalu/software-project/tree/main/exercises)
