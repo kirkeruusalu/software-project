@@ -8,6 +8,8 @@ You can find the timekeeping document [here](https://github.com/kirkeruusalu/sof
 
 You can find the requirements specification document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/requirements_specification.md)
 
+You can find the changelog document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/changelog.md)
+
 ## How to run the application:
 Installing dependencies:
 ```
