@@ -6,9 +6,10 @@ authors = ["Kirke Ruusalu <kirke.ruusalu@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.9,<4.0"
 invoke = "^2.2.0"
 python-dotenv = "^1.0.1"
+coverage = "^7.6.7"
 
 
 [tool.poetry.group.dev.dependencies]
