@@ -26,7 +26,15 @@ classDiagram
         +function() : void
     }
 
-    class SpecialSquare {
+    class ChanceCommunity {
+        +function() : void
+    }
+
+    class TrainStation {
+        +function() : void
+    }
+
+    class Facility {
         +function() : void
     }
 
@@ -61,9 +69,14 @@ classDiagram
     Player "2..8" -- "1" MonopolyGame
     MonopolyGame "1" -- "1" StartSquare
     MonopolyGame "1" -- "1" PrisonSquare
-    MonopolyGame "1" -- "1" SpecialSquare
+    MonopolyGame "1" -- "1" ChanceCommunity
+    MonopolyGame "1" -- "1" TrainStation
+    MonopolyGame "1" -- "1" Facility
     MonopolyGame "1" -- "1" NormalStreetSquare
     Player "1" -- "0..*" NormalStreetSquare
-    Player "1" -- "0..*" SpecialSquare
+    Player "1" -- "0..*" ChanceCommunity
+    Player "1" -- "0..*" TrainStation
+    Player "1" -- "0..*" Facility
+
 
 ```
