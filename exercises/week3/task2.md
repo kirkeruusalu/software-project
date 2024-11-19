@@ -10,15 +10,19 @@ sequenceDiagram
 
     main->>management: Create HSLCardReaderManagement()
     activate management
+    management-->>main: Management created
 
     main->>rautatietori: Create TicketBooth()
     activate rautatietori
+    rautatietori-->>main: TicketBooth created
 
     main->>tram6: Create Reader()
     activate tram6
+    tram6-->>main: Reader created
 
     main->>bus244: Create Reader()
     activate bus244
+    bus244-->>main: Reader created
 
     main->>management: add_ticketbooth(rautatietori)
     management-->>main: TicketBooth added
@@ -31,6 +35,7 @@ sequenceDiagram
 
     main->>kiosk1: Create Kiosk()
     activate kiosk1
+    kiosk1-->>main: Kiosk created
 
     main->>kiosk1: buy_travel_card("Kalle")
     activate kalles_card
@@ -52,7 +57,7 @@ sequenceDiagram
     deactivate tram6
     deactivate rautatietori
     deactivate management
-    deactivate kalles_card
     deactivate kiosk1
+
 ```
  
