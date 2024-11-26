@@ -1,9 +1,9 @@
-import os.path
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
+import os.path
 from entities.user import User
 from repositories.user_repository import user_repository
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 
 class UserService:
@@ -17,5 +17,5 @@ class UserService:
 
         if is_there_user:
             raise ValueError("this username exists, choose a new one")
-        
-        user = self._user_repository.create_user(User(username))
+
+        self._user_repository.create_user(User(username))

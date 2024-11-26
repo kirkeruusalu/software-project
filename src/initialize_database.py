@@ -36,13 +36,14 @@ def create_equation_table(connection):
         """)
     connection.commit()
 
+
 def drop_equation_table(connection):
     cursor = connection.cursor()
 
     cursor.execute("""
         drop table if exists equations;
         """)
-    
+
     connection.commit()
 
 
