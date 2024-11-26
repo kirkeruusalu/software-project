@@ -23,25 +23,25 @@ def drop_users_table(connection):
     connection.commit()
 
 
-def create_equation_table(connection):
+def create_subject_table(connection):
     cursor = connection.cursor()
 
     cursor.execute("""
-        create table if not exists equations (
+        create table if not exists subjects (
             id integer primary key,
             username text,
-            equation text
-            
+            name text,
+            mastery_level text
             );  
         """)
     connection.commit()
 
 
-def drop_equation_table(connection):
+def drop_subject_table(connection):
     cursor = connection.cursor()
 
     cursor.execute("""
-        drop table if exists equations;
+        drop table if exists subjects;
         """)
 
     connection.commit()
@@ -52,6 +52,6 @@ def initialize_database():
     connection = get_database_connection()
 
     drop_users_table(connection)
-    drop_equation_table(connection)
+    drop_subject_table(connection)
     create_users_table(connection)
-    create_equation_table(connection)
+    create_subject_table(connection)
