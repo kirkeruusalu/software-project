@@ -11,9 +11,9 @@ The initial UI will be a command-line interface, which will be extended into a G
 
 ## Planned Features
 ### Basic Functionalities
-- When opening the application, the user will see a login screen, where they can either log in with their credentials or create a new account.
+- When opening the application, the user will see a login screen, where they can either log in with their credentials or create a new account. (partly done)
 - Once logged in, the user will be presented with a view of their current subjects and progress.
-- Users can add subjects and break them down into smaller subtopics (such as Computer Science -> Networks)
+- Users can add subjects and break them down into smaller subtopics (such as Computer Science -> Networks) (almost done)
 - When a user adds a topic, it will automatically be assigned a skill level of beginner (the user can change this manually)
 - Users can log:
     - their perceived level of mastery in the subtopics
