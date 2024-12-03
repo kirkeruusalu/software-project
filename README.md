@@ -3,7 +3,7 @@
 ## Study Tracker Project
 This project will be a simple tool to help manage progress across various subjects/skills.
 
-Link to the release is [here]()
+Link to the week 5 release is [here](https://github.com/kirkeruusalu/software-project/releases/tag/viikko5)
 
 ## Documentation
 You can find the timekeeping document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/timetracking.md). 
