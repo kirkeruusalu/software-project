@@ -31,7 +31,7 @@ class SubjectRepository:
         row = cursor.fetchone()
 
         if row:
-            return Subject(name=row[0], mastery_level=row[1])
+            return Subject(name=row[1], mastery_level=row[2])
         return None
 
     def find_all_subjects(self, user: User):

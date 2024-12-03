@@ -8,7 +8,7 @@ test_repository = UserRepository()
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
         test_repository.delete_all()
-        self.user_kirke = User("kirke")
+        self.user_kirke = User("kirke", "password123")
 
     def test_create_user(self):
         test_repository.create_user(self.user_kirke)
