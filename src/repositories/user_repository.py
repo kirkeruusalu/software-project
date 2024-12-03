@@ -13,8 +13,8 @@ class UserRepository:
     def create_user(self, user=User):
         cursor = self._connection.cursor()
         cursor.execute(
-            "insert into users (username) values (?)",
-            (user.username,))
+            "insert into users (username, password) values (?, ?)",
+            (user.username, user.password))
         self._connection.commit()
 
     def find_all_users(self):
@@ -30,7 +30,7 @@ class UserRepository:
 
         cursor = self._connection.cursor()
         cursor.execute(
-            "SELECT username FROM users WHERE username = ?",
+            "select username, password from users where username = ?",
             (username,)
         )
         row = cursor.fetchone()
@@ -40,6 +40,13 @@ class UserRepository:
         cursor = self._connection.cursor()
         cursor.execute("delete from users")
         self._connection.commit()
-
+ 
+    def delete_user(self, username):
+        cursor = self._connection.cursor()
+        cursor.execute(
+            "delete from users where username = ?",
+            (username,)
+        )
+        self._connection.commit()
 
 user_repository = UserRepository()

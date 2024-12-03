@@ -6,7 +6,8 @@ def create_users_table(connection):
 
     cursor.execute("""
         create table if not exists users (
-            username text primary key
+            username text primary key,
+            password text
         );
     """)
 

@@ -1,3 +1,4 @@
+import string
 import sys
 import os.path
 from entities.user import User
@@ -13,16 +14,59 @@ class UserService:
         self._user_repository = user_repository
         self._current_user = None
 
-    def create_user(self, username):
+    def _validate_password(self, password):
+        passw = str(password)
+        numbers = list(string.digits)
+        has_number = False
+
+        for i in passw:
+            if i in numbers:
+                has_number = True
+
+        if len(passw) >= 5 and has_number:
+            return True
+
+        raise NameError("Wrong format for password")
+
+    def validate_credentials(self, username, password):
         is_there_user = self._user_repository.find_by_username(username)
+
+        if is_there_user and is_there_user["password"] == password:
+            return True
+
+        raise NameError("Incorrect username or password")
+
+
+    def create_user(self, username, password):
+        user = str(username)
+        passw = str(password)
+
+        is_there_user = self._user_repository.find_by_username(user)
 
         if is_there_user:
             raise ValueError("this username exists, choose a new one")
 
-        new = User(username)
-        self._user_repository.create_user(new)
-        self._current_user = new
+        validation = self._validate_password(password)
+
+        if validation:
+            new = User(user, passw)
+            self._user_repository.create_user(new)
+
+
+    def login_user(self, username, password):
+
+        validate = self.validate_credentials(username, password)
+
+        if validate:
+            self._current_user = User(username, password)
+
+        return self._current_user
+
+    def logout_user(self):
+        self._current_user = None
 
     @property
     def current_user(self):
         return self._current_user
+
+user_service = UserService(UserRepository())

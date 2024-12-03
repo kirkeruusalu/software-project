@@ -21,15 +21,36 @@ class SubjectRepository:
 
         self._connection.commit()
 
-    def find_subject(self, user: User, subject: Subject):
+    def find_subject_by_name(self, user: User, subject_name: str):
         cursor = self._connection.cursor()
         select = """
             select username, name, mastery_level
-                from subjects where username=? and name=? and mastery_level=? """
+                from subjects where username=? and name=?"""
+        cursor.execute(select, (user.username, subject_name))
 
-        cursor.execute(select, (user.username, subject.name, subject.mastery_level))
+        row = cursor.fetchone()
 
-        return cursor.fetchone()
+        if row:
+            return Subject(name=row[0], mastery_level=row[1])
+        return None
+
+    def find_all_subjects(self, user: User):
+        cursor = self._connection.cursor()
+        select = """
+            select username, name, mastery_level
+            from subjects
+            where username = ? """
+
+        cursor.execute(select, (user.username,))
+
+        return cursor.fetchall()
+
+    def delete_subject(self, user: User, subject: Subject):
+        cursor = self._connection.cursor()
+        cursor.execute("""
+            delete from subjects where user = ? and name = ? """,
+                    (user.username, subject.name))
+        self._connection.commit()
 
     def delete_all(self):
         cursor = self._connection.cursor()

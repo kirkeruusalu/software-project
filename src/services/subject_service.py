@@ -23,3 +23,17 @@ class SubjectService:
         new_subject = Subject(subject_name, subject_level)
 
         self._subject_repository.add_subject(self._current_user, new_subject)
+
+    def find_user_subjects(self):
+        return self._subject_repository.find_all_subjects(self._current_user)
+
+    def delete_user_subject(self, name):
+
+        subject_name = str(name)
+
+        subject = self._subject_repository.find_subject_by_name(self._current_user, subject_name)
+
+        if subject:
+            self._subject_repository.delete_subject(self._current_user, subject)
+        else:
+            raise ValueError("Subject not found")
