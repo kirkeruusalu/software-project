@@ -10,3 +10,7 @@
 - Created functionality to add a subject
 - Wrote unittests for SubjectRepository
 - Made small edits to database connections
+
+## Week 5
+- Created functionality for logging in with password
+- Added graphical user interface
