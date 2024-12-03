@@ -14,3 +14,4 @@
 ## Week 5
 - Created functionality for logging in with password
 - Added graphical user interface
+- Added functionality for viewing subjects
