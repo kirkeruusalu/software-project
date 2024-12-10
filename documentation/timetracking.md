@@ -10,5 +10,7 @@
 |29.11 | 3                 | Getting to know tkinter|
 |01.12 | 6                 | Creating GUI|
 |02.12 | 1                 | More subject functionality|
+|09.12 | 3                 | Recommendations from code review|
+|10.12 | 4                 | Tests|
 
-### Total time spent: 28.5 hours
+### Total time spent: 35.5 hours
