@@ -23,18 +23,21 @@ class UserService:
             if i in numbers:
                 has_number = True
 
-        if len(passw) >= 5 and has_number:
-            return True
+        if len(passw) < 5:
+            raise PasswordWrongFormatError("Password too short")
+        if not has_number:
+            raise PasswordWrongFormatError("Password must contain a number")
+        
+        return True
 
-        raise NameError("Wrong format for password")
-
+        
     def validate_credentials(self, username, password):
         is_there_user = self._user_repository.find_by_username(username)
 
         if is_there_user and is_there_user["password"] == password:
             return True
 
-        raise NameError("Incorrect username or password")
+        raise PasswordWrongFormatError("Incorrect username or password")
 
 
     def create_user(self, username, password):
@@ -44,7 +47,7 @@ class UserService:
         is_there_user = self._user_repository.find_by_username(user)
 
         if is_there_user:
-            raise ValueError("this username exists, choose a new one")
+            raise AccountExistsError("This username exists, choose a new one")
 
         validation = self._validate_password(password)
 
@@ -70,3 +73,9 @@ class UserService:
         return self._current_user
 
 user_service = UserService(UserRepository())
+
+class PasswordWrongFormatError(Exception):
+    pass
+
+class AccountExistsError(Exception):
+    pass

@@ -17,10 +17,12 @@ class UserSubjectsView(tk.Frame):
         self.subjects_listbox = tk.Listbox(self, width=40, height=10)
         self.subjects_listbox.pack(pady=10)
 
-        tk.Button(self, text="Add Subject", command=self.add_subject).pack(pady=10)
+        tk.Button(self, text="Add Subject", 
+                  command=lambda: self.switch_view("add_subject")).pack()
 
-        tk.Button(self, text="Back to main",
-                  command=lambda: self.switch_view("first")).pack()
+        tk.Button(self, text="Log out",
+                  command=self.log_out).pack()
+        
 
         self.status_label = tk.Label(self, text="")
         self.status_label.pack()
@@ -39,5 +41,7 @@ class UserSubjectsView(tk.Frame):
         else:
             self.subjects_listbox.insert(tk.END, "No subjects found.")
         
-    def add_subject(self):
-        self.switch_view("add_subject")
+    
+    def log_out(self):
+        self.user_service.logout_user()
+        self.switch_view("first")

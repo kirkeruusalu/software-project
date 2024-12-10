@@ -13,4 +13,5 @@ class FirstView(tk.Frame):
                   command=lambda: self.switch_view("create_user")).pack()
         tk.Button(self, text="Go to login",
                   command=lambda: self.switch_view("login")).pack()
+
     

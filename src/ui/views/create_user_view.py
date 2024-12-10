@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from ui.views.ui_helpers import clear_status_label_after_delay
 from services.user_service import user_service as usr_svc
 
 class CreateUserView(tk.Frame):
@@ -37,8 +38,11 @@ class CreateUserView(tk.Frame):
         try:
             self.user_service.create_user(username, password)
             self.status_label.config(text="User created!", fg="green")
+            clear_status_label_after_delay(self.status_label)
         except ValueError as e:
             self.status_label.config(text=str(e), fg="red")
+            clear_status_label_after_delay(self.status_label)
         except NameError as e:
             self.status_label.config(text=str(e), fg="red")
+            clear_status_label_after_delay(self.status_label)
     
