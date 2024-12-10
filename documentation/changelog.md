@@ -15,3 +15,8 @@
 - Created functionality for logging in with password
 - Added graphical user interface
 - Added functionality for viewing subjects
+
+## Week 6
+- Improved password validation
+- UI improvements
+- Added log out functionality
