@@ -15,6 +15,18 @@ class UserService:
         self._current_user = None
 
     def _validate_password(self, password):
+        """
+        Validate the format of a password
+
+        Args:
+            password (str): The chosen password
+
+        Raises:
+            PasswordWrongFormatError: If the password does not meet the criteria
+
+        Returns:
+            True: If the password is valid
+        """
         passw = str(password)
         numbers = list(string.digits)
         has_number = False
@@ -32,6 +44,18 @@ class UserService:
 
         
     def validate_credentials(self, username, password):
+        """Checks whether entered username exists and matches password
+
+        Args:
+            username (str): entered username
+            password (str): entered password
+
+        Raises:
+            PasswordWrongFormatError: If the username and password dont match/it already exists
+
+        Returns:
+            True: If username and password match
+        """
         is_there_user = self._user_repository.find_by_username(username)
 
         if is_there_user and is_there_user["password"] == password:
@@ -41,6 +65,15 @@ class UserService:
 
 
     def create_user(self, username, password):
+        """Creates a user with the chosen username and password
+
+        Args:
+            username (str): chosen username
+            password (str): chosen password
+
+        Raises:
+            AccountExistsError: if the username was already found in the database
+        """
         user = str(username)
         passw = str(password)
 
@@ -57,6 +90,16 @@ class UserService:
 
 
     def login_user(self, username, password):
+        """Logs in the user if credentials were valid
+
+        Args:
+            username (str): entered username 
+            password (str): entered password
+
+        Returns:
+            User object: if login was successful, returns the current logged in user
+            None: if login was unsuccessful
+        """
 
         validate = self.validate_credentials(username, password)
 
@@ -66,6 +109,8 @@ class UserService:
         return self._current_user
 
     def logout_user(self):
+        """Logs out the user
+        """
         self._current_user = None
 
     @property
