@@ -16,7 +16,7 @@ The initial UI will be a command-line interface, which will be extended into a G
 - Users can add subjects and break them down into smaller subtopics (such as Computer Science -> Networks) (almost done)
 - When a user adds a topic, it will automatically be assigned a skill level of beginner (the user can change this manually) (done)
 - Users can log:
-    - their perceived level of mastery in the subtopics
+    - their perceived level of mastery in the subtopics (done)
     - how much time they have spent studying
     - any notes/comments they have about specific topics
 - A simple chart can be generated that show how the user has progressed over time
