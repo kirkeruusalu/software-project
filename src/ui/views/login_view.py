@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from services.user_service import user_service as usr_svc
+from services.user_service import user_service as usr_svc, PasswordWrongFormatError
 
 class LoginView(tk.Frame):
     def __init__(self, parent, switch_view):
@@ -37,6 +37,6 @@ class LoginView(tk.Frame):
         try:
             self.user_service.login_user(username, password)
             self.switch_view("subjects")
-        except NameError as e:
+        except PasswordWrongFormatError as e:
             self.status_label.config(text=str(e), fg="red")
     

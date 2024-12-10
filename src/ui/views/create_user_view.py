@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from ui.views.ui_helpers import clear_status_label_after_delay
-from services.user_service import user_service as usr_svc
+from services.user_service import user_service as usr_svc, PasswordWrongFormatError, AccountExistsError
 
 class CreateUserView(tk.Frame):
     def __init__(self, parent, switch_view):
@@ -39,10 +39,10 @@ class CreateUserView(tk.Frame):
             self.user_service.create_user(username, password)
             self.status_label.config(text="User created!", fg="green")
             clear_status_label_after_delay(self.status_label)
-        except ValueError as e:
+        except PasswordWrongFormatError as e:
             self.status_label.config(text=str(e), fg="red")
             clear_status_label_after_delay(self.status_label)
-        except NameError as e:
+        except AccountExistsError as e:
             self.status_label.config(text=str(e), fg="red")
             clear_status_label_after_delay(self.status_label)
     

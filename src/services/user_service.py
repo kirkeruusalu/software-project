@@ -39,10 +39,10 @@ class UserService:
             raise PasswordWrongFormatError("Password too short")
         if not has_number:
             raise PasswordWrongFormatError("Password must contain a number")
-        
+
         return True
 
-        
+
     def validate_credentials(self, username, password):
         """Checks whether entered username exists and matches password
 
