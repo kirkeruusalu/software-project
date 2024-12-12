@@ -14,8 +14,10 @@ class UserSubjectsView(tk.Frame):
     def create_widgets(self):
         tk.Label(self, text = "Here you can see your added subjects").pack(pady=10)
 
-        self.subjects_listbox = tk.Listbox(self, width=40, height=10)
+        self.subjects_listbox = tk.Listbox(self, selectmode=tk.SINGLE, width=40, height=10)
         self.subjects_listbox.pack(pady=10)
+
+        self.subjects_listbox.bind("<Double-1>", self.user_selection)
 
         tk.Button(self, text="Add Subject", 
                   command=lambda: self.switch_view("add_subject")).pack()
@@ -37,7 +39,7 @@ class UserSubjectsView(tk.Frame):
         subjects = self.subject_service.find_user_subjects()
         if subjects:
             for subject in subjects:
-                self.subjects_listbox.insert(tk.END, f"{subject['name']} ({subject['mastery_level']})")
+                self.subjects_listbox.insert(tk.END, f"{subject['name']}")
         else:
             self.subjects_listbox.insert(tk.END, "No subjects found.")
         
@@ -45,3 +47,9 @@ class UserSubjectsView(tk.Frame):
     def log_out(self):
         self.user_service.logout_user()
         self.switch_view("first")
+
+    def user_selection(self, item):
+        index = self.subjects_listbox.curselection()[0]
+        selected_item = self.subjects_listbox.get(index)
+        self.switch_view("subject_info", selected_item)
+

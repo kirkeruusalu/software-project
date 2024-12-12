@@ -39,10 +39,10 @@ class SubjectRepository:
         cursor.execute(select, (user.username, subject_name))
 
         row = cursor.fetchone()
-
-        if row:
-            return Subject(name=row[1], mastery_level=row[2])
-        return None
+        if row is None:
+            return None
+        return (row[1], row[2])
+    
 
     def find_all_subjects(self, user: User):
         """Finds all subjects related to the user from database
@@ -58,6 +58,7 @@ class SubjectRepository:
 
         cursor.execute(select, (user.username,))
 
+        
         return cursor.fetchall()
 
     def delete_subject(self, user: User, subject: Subject):
@@ -78,5 +79,32 @@ class SubjectRepository:
         cursor = self._connection.cursor()
         cursor.execute("delete from subjects")
         self._connection.commit()
+    
+    def update_mastery(self, user: User, subject_name, new_level):
+        """Updates the mastery level for a subject in the database
+
+        Args:
+            user (User): the given user
+            subject_name (str): the subject name
+            new_level (str): new desired level
+        """
+        cursor = self._connection.cursor()
+
+        cursor.execute("update subjects set mastery_level = ? where username = ? and name = ?",
+                       (new_level, user.username, subject_name))
+        
+        self._connection.commit()
+    
+    def check_subject_in_db(self, username):
+        cursor = self._connection.cursor()
+        query = "SELECT * FROM subjects WHERE username = ? "
+        cursor.execute(query, (username,))
+        result = cursor.fetchall()
+        for row in result:
+            print(row[0], row[1], row[2], row[3])
+        print(result)
+        return result
+
+
 
 subject_repository = SubjectRepository()

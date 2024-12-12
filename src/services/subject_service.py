@@ -80,6 +80,17 @@ class SubjectService:
         subject_name = str(name)
         return self._subject_repository.find_subject_by_name(self._current_user, subject_name)
 
+    def update_mastery_level(self, name, new_level):
+        """Updates the mastery level for a subject
+
+        Args:
+            name (str): name of the subject
+            new_level (str): new mastery level, beginner intermediate or advanced
+        """
+        subject = self.find_subject(name)
+
+        self._subject_repository.update_mastery(self._current_user, subject[0], new_level)
+
 
 class SubjectAlreadyExistsError(Exception):
     """Exception raised when attempting to add a duplicate subject."""
