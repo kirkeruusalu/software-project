@@ -20,3 +20,8 @@
 - Improved password validation
 - UI improvements
 - Added log out functionality
+
+## Week 7
+- Added changing mastery level functionality
+- Increased test coverage
+
