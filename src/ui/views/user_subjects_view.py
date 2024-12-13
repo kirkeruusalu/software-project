@@ -43,7 +43,6 @@ class UserSubjectsView(tk.Frame):
         else:
             self.subjects_listbox.insert(tk.END, "No subjects found.")
         
-    
     def log_out(self):
         self.user_service.logout_user()
         self.switch_view("first")

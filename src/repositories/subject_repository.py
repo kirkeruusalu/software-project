@@ -19,8 +19,8 @@ class SubjectRepository:
             subject (Subject): given subject
         """
         cursor = self._connection.cursor()
-        cursor.execute("insert into subjects (username, name, mastery_level) values (?, ?, ?) ",
-                (user.username, subject.name, subject.mastery_level))
+        cursor.execute("insert into subjects (username, name, mastery_level, time) values (?, ?, ?, ?) ",
+                (user.username, subject.name, subject.mastery_level, subject.time))
 
         self._connection.commit()
 
@@ -35,13 +35,13 @@ class SubjectRepository:
             A tuple of the found subject, None otherwise
         """
         cursor = self._connection.cursor()
-        select = "select username, name, mastery_level from subjects where username=? and name=?"
+        select = "select username, name, mastery_level, time from subjects where username=? and name=?"
         cursor.execute(select, (user.username, subject_name))
 
         row = cursor.fetchone()
         if row is None:
             return None
-        return (row[1], row[2])
+        return (row[1], row[2], row[3])
     
 
     def find_all_subjects(self, user: User):
@@ -54,7 +54,7 @@ class SubjectRepository:
             A list of tuples, where each tuple is a subject
         """
         cursor = self._connection.cursor()
-        select = "select username, name, mastery_level from subjects where username = ? "
+        select = "select username, name, mastery_level, time from subjects where username = ? "
 
         cursor.execute(select, (user.username,))
   
@@ -94,15 +94,32 @@ class SubjectRepository:
         
         self._connection.commit()
     
+    def log_time(self, user: User, subject_name, new_time):
+        """Updates the time spent studying a certain subject
+
+        Args:
+            user (User): the current user
+            subject_name (str): the subject name
+            old_time (int): time spent studying so far
+            new_time (int): the time they want to log
+        """
+        cursor = self._connection.cursor()
+
+        cursor.execute("update subjects set time = ? where username = ? and name = ?",
+                       (new_time, user.username, subject_name))
+        
+        self._connection.commit()
+    
     def check_subject_in_db(self, username):
         cursor = self._connection.cursor()
         query = "SELECT * FROM subjects WHERE username = ? "
         cursor.execute(query, (username,))
         result = cursor.fetchall()
         for row in result:
-            print(row[0], row[1], row[2], row[3])
+            print(row[0], row[1], row[2], row[3], row[4])
         print(result)
         return result
+
 
 
 

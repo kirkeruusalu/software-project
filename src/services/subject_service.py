@@ -90,7 +90,24 @@ class SubjectService:
         subject = self.find_subject(name)
 
         self._subject_repository.update_mastery(self._current_user, subject[0], new_level)
+  
+    def log_time_spent(self, name, new_time):
+        """Adds to the total time spent studying a subject
 
+        Args:
+            name (str): name of subject
+            old_time (int): the previous time
+            new_time (int): the added time
+        """
+        subject = self.find_subject(name)
+        
+        total = int(subject[2]) + int(new_time)
+
+        self._subject_repository.log_time(self._current_user, subject[0], total)
+    
+    def get_time_spent(self, name):
+        subject = self.find_subject(name)
+        return subject[2]
 
 class SubjectAlreadyExistsError(Exception):
     """Exception raised when attempting to add a duplicate subject."""
