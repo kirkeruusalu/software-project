@@ -57,20 +57,19 @@ class SubjectRepository:
         select = "select username, name, mastery_level from subjects where username = ? "
 
         cursor.execute(select, (user.username,))
-
-        
+  
         return cursor.fetchall()
 
-    def delete_subject(self, user: User, subject: Subject):
+    def delete_subject(self, user: User, subject):
         """Deletes the specified subject from the database
 
         Args:
             user (User): the given user
-            subject (Subject): the given subject
+            subject (tuple): the given subject
         """
         cursor = self._connection.cursor()
-        cursor.execute("delete from subjects where user = ? and name = ? ",
-                    (user.username, subject.name))
+        cursor.execute("delete from subjects where username = ? and name = ? ",
+                    (user.username, subject[0]))
         self._connection.commit()
 
     def delete_all(self):

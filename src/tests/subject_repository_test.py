@@ -18,8 +18,8 @@ class TestSubjectRepository(unittest.TestCase):
         found_subject = self.test_repository.find_subject_by_name(self.user_kirke, self.subject_math.name)
 
         self.assertIsNotNone(found_subject)
-        self.assertEqual(found_subject.name, self.subject_math.name)
-        self.assertEqual(found_subject.mastery_level, self.subject_math.mastery_level)
+        self.assertEqual(found_subject[0], self.subject_math.name)
+        self.assertEqual(found_subject[1], self.subject_math.mastery_level)
 
     def test_find_subject_by_name_not_found(self):
         found_subject = self.test_repository.find_subject_by_name(self.user_kirke, self.subject_math.name)
