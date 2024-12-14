@@ -4,6 +4,7 @@ from services.user_service import user_service as usr_svc
 from services.subject_service import SubjectService
 from ui.views.ui_helpers import clear_status_label_after_delay
 from repositories.subject_repository import SubjectRepository
+from services.subject_service import TimeMustBeIntegerError
 
 class SubjectInfoView(tk.Frame):
     def __init__(self, parent, switch_view):
@@ -46,7 +47,10 @@ class SubjectInfoView(tk.Frame):
         self.log_time_button.grid(row=3, column=2, padx=10, pady=10, sticky="ew")
 
         tk.Button(self, text="Back",
-                  command=lambda: self.switch_view("subjects")).grid(row=5, column=0, columnspan=1, pady=10, sticky="nsew")
+                  command=lambda: self.switch_view("subjects")).grid(row=5, column=0, columnspan=2, padx=10, pady=10, sticky="sw")
+        
+        self.remove_subject_button = tk.Button(self, text="Delete subject", command=self.confirm_delete)
+        self.remove_subject_button.grid(row=5, column=2, padx=10, columnspan=2, pady=10, sticky="se")
 
         self.status_label = tk.Label(self, text="")
         self.status_label.grid(row=100, column=0, columnspan=2, pady=10)
@@ -82,11 +86,42 @@ class SubjectInfoView(tk.Frame):
         subject = SubjectRepository()
         time = self.time_entry.get()
         if time and self.subject:
-            self.subject_service.log_time_spent(self.subject[0], time)
-            updated_total_time = self.subject_service.get_time_spent(self.subject[0])
-            self.log_time_label.config(text=f"Total time studying: {updated_total_time}")
+            try:
+                self.subject_service.log_time_spent(self.subject[0], time)
+                updated_total_time = self.subject_service.get_time_spent(self.subject[0])
+                self.log_time_label.config(text=f"Total time studying: {updated_total_time}")
             #subject.check_subject_in_db(self.user_service.current_user.username)
-            self.status_label.config(text="Time logged successfully", fg="green")
+                self.status_label.config(text="Time logged successfully", fg="green")
+                clear_status_label_after_delay(self.status_label)
+            except TimeMustBeIntegerError as e:
+                self.status_label.config(text=str(e), fg="red")
+                clear_status_label_after_delay(self.status_label)
+        
+    def delete_subject(self):
+        if self.subject:
+            self.subject_service.delete_user_subject(self.subject[0])
+
+
+    def confirm_delete(self):
+        window = tk.Toplevel(self)
+        window.title("Confirm deleteion")
+        window.geometry("300x150")
+        window.transient(self)
+        window.grab_set()
+
+        tk.Label(window, text="Are you sure you want to delete?")
+
+        def on_confirm():
+            self.delete_subject()
+            window.destroy()
+            self.switch_view("subjects", data={"message" : "Subject deleted successfully", "fg" : "green"})
+
+        
+        def on_cancel():
+            window.destroy()
+
+        tk.Button(window, text="Yes", command=on_confirm, width=10).pack(side="left", padx=10, pady=20)
+        tk.Button(window, text="Cancel", command=on_cancel, width=20).pack(side="right", padx=10, pady=20)
 
 
 

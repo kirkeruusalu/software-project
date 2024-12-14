@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from services.user_service import user_service as usr_svc
 from services.subject_service import SubjectService
+from ui.views.ui_helpers import clear_status_label_after_delay
 
 class UserSubjectsView(tk.Frame):
     def __init__(self, parent, switch_view):
@@ -12,7 +13,7 @@ class UserSubjectsView(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        tk.Label(self, text = "Here you can see your added subjects").pack(pady=10)
+        tk.Label(self, text = "Here you can see your added subjects, double-click on one to view details", font=("Helvetica", 14)).pack(pady=10)
 
         self.subjects_listbox = tk.Listbox(self, selectmode=tk.SINGLE, width=40, height=10)
         self.subjects_listbox.pack(pady=10)
@@ -20,20 +21,25 @@ class UserSubjectsView(tk.Frame):
         self.subjects_listbox.bind("<Double-1>", self.user_selection)
 
         tk.Button(self, text="Add Subject", 
-                  command=lambda: self.switch_view("add_subject")).pack()
+                  command=lambda: self.switch_view("add_subject")).pack(pady=10)
 
         tk.Button(self, text="Log out",
-                  command=self.log_out).pack()
+                  command=self.log_out).pack(pady=10)
         
 
         self.status_label = tk.Label(self, text="")
         self.status_label.pack()
 
-    def display_user_subjects(self):
+    def display_user_subjects(self, data=None):
         current_user = self.user_service.current_user
 
         if not self.subject_service:
             self.subject_service = SubjectService(current_user)
+        
+        if data and "message" in data:
+            self.status_label.config(text=data["message"], fg="green")
+            clear_status_label_after_delay(self.status_label)
+        
 
         self.subjects_listbox.delete(0, tk.END)
         subjects = self.subject_service.find_user_subjects()

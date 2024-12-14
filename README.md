@@ -47,5 +47,12 @@ poetry run invoke lint
 
 
 
+to do tomorrow: 
+- testing the new functionalities
+- add docstring
+- fix pylint
 
-
+to do sunday:
+- all of the documentation
+- final release
+- final tests

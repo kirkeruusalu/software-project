@@ -29,7 +29,7 @@ class ViewManager:
         self.current_view.pack(fill="both")
 
         if isinstance(self.current_view, UserSubjectsView):
-            self.current_view.display_user_subjects()
+            self.current_view.display_user_subjects(data)
 
         elif isinstance(self.current_view, SubjectInfoView) and data:
             self.current_view.display_subject(data)

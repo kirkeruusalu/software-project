@@ -11,22 +11,22 @@ class CreateUserView(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        tk.Label(self, text = "Here you can create a new user").pack()
+        tk.Label(self, text = "Here you can create a new user").pack(pady=10)
 
-        tk.Label(self, text="New username").pack()
+        tk.Label(self, text="New username").pack(pady=10)
         self.username = tk.Entry(self)
         self.username.pack(pady=5)
 
-        tk.Label(self, text="New password").pack()
+        tk.Label(self, text="New password").pack(pady=10)
         self.password = tk.Entry(self, show="*")
         self.password.pack(pady=5)
 
         tk.Button(self, text="Submit", command=self.submit_user).pack(pady=10)
 
         tk.Button(self, text="Back to main",
-                  command=lambda: self.switch_view("first")).pack()
+                  command=lambda: self.switch_view("first")).pack(pady=10)
         tk.Button(self, text = "Go to login",
-                  command=lambda: self.switch_view("login")).pack()
+                  command=lambda: self.switch_view("login")).pack(pady=10)
 
         self.status_label = tk.Label(self, text="")
         self.status_label.pack()

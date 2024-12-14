@@ -100,15 +100,22 @@ class SubjectService:
             new_time (int): the added time
         """
         subject = self.find_subject(name)
-        
-        total = int(subject[2]) + int(new_time)
 
+        try:
+            new_time = int(new_time)
+        except ValueError as exc:
+            raise TimeMustBeIntegerError("The time must be an integer.") from exc
+
+        total = int(subject[2]) + int(new_time)
         self._subject_repository.log_time(self._current_user, subject[0], total)
-    
+        
     def get_time_spent(self, name):
         subject = self.find_subject(name)
         return subject[2]
 
 class SubjectAlreadyExistsError(Exception):
     """Exception raised when attempting to add a duplicate subject."""
+    pass
+
+class TimeMustBeIntegerError(Exception):
     pass

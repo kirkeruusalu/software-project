@@ -12,11 +12,11 @@ class LoginView(tk.Frame):
     def create_widgets(self):
         tk.Label(self, text = "Here you can log in to your account").pack()
 
-        tk.Label(self, text="Username").pack()
+        tk.Label(self, text="Username").pack(pady=10)
         self.username = tk.Entry(self)
         self.username.pack(pady=5)
 
-        tk.Label(self, text="Password").pack()
+        tk.Label(self, text="Password").pack(pady=10)
         self.password = tk.Entry(self, show="*")
         self.password.pack(pady=5)
 
