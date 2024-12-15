@@ -23,5 +23,6 @@
 
 ## Week 7
 - Added changing mastery level functionality
+- Added matplotlib, functionality to generate a bar chart
 - Increased test coverage
 
