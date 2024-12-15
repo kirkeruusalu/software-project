@@ -25,7 +25,7 @@ class UserRepository:
         """Finds all the user in the database
 
         Returns:
-            A list of tuples, each tuple is a database row with user info
+            A list of tuples, each tuple is databsase row
         """
         cursor = self._connection.cursor()
         cursor.execute("select * from users")
@@ -45,8 +45,7 @@ class UserRepository:
             A tuple with the user's username and password (database row)
         """
         if not isinstance(username, str):
-            raise ValueError(
-                f"Expected username to be a string, got {type(username)}")
+            raise ValueError("Username wasnt string")
 
         cursor = self._connection.cursor()
         cursor.execute(

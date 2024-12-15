@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 from ui.views.ui_helpers import clear_status_label_after_delay
 from services.user_service import user_service as usr_svc, PasswordWrongFormatError, AccountExistsError
 

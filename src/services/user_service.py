@@ -120,7 +120,7 @@ class UserService:
 user_service = UserService(UserRepository())
 
 class PasswordWrongFormatError(Exception):
-    pass
+    """Exception class for wrong format password"""
 
 class AccountExistsError(Exception):
-    pass
+    """Exception class for alr existing account"""

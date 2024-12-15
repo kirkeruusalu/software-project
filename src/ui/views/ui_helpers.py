@@ -1,5 +1,3 @@
-import tkinter as tk
-
 def clear_status_label_after_delay(widget, delay=2000):
     """
     Clears the text of a Tkinter Label widget after a specified delay

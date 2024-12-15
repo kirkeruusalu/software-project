@@ -29,8 +29,6 @@ class LoginView(tk.Frame):
 
         tk.Button(self, text="Back to main",
                   command=lambda: self.switch_view("first")).pack()
-        #tk.Button(self, text = "Go to login",
-         #         command=lambda: self.switch_view("login")).pack()
 
         self.status_label = tk.Label(self, text="")
         self.status_label.pack()

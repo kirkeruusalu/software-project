@@ -17,5 +17,4 @@ class FirstView(tk.Frame):
                   command=lambda: self.switch_view("create_user")).pack(fill="x", padx=250, pady=20, anchor="center")
         tk.Button(self, text="Go to login",
                   command=lambda: self.switch_view("login")).pack(fill="x", padx=250, pady=20, anchor="center")
-
     
