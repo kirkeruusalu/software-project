@@ -49,8 +49,3 @@ Pylint:
 ```
 poetry run invoke lint
 ```
-
-to do sunday:
-- all of the documentation
-- final release
-- final tests
