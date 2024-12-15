@@ -6,6 +6,8 @@ from ui.views.ui_helpers import clear_status_label_after_delay
 
 
 class SubjectInfoView(tk.Frame):
+    """Class responsible for viewing the info about a certain subject
+    """
     def __init__(self, parent, switch_view):
         super().__init__(parent)
         self.switch_view = switch_view
@@ -15,6 +17,8 @@ class SubjectInfoView(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
+        """Method that creates widgets that user sees
+        """
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
         self.grid_columnconfigure(2, weight=1)
@@ -55,6 +59,11 @@ class SubjectInfoView(tk.Frame):
         self.status_label.grid(row=100, column=0, columnspan=2, pady=10)
     
     def display_subject(self, subject):
+        """Method that displays the user subjects
+
+        Args:
+            subject (str): the subject name
+        """
         current_user = self.user_service.current_user
 
         if not self.subject_service:
@@ -71,6 +80,8 @@ class SubjectInfoView(tk.Frame):
         self.selected_mastery.set(mastery_level)
 
     def update_mastery_level(self):
+        """Method that updates the mastery level of a subject 
+        """
         new_level = self.selected_mastery.get()
 
         if self.subject:
@@ -80,7 +91,8 @@ class SubjectInfoView(tk.Frame):
             clear_status_label_after_delay(self.status_label)
 
     def log_time(self):
-
+        """Method that logs time spent on a subject
+        """
         time = self.time_entry.get()
         if time and self.subject:
             try:
@@ -96,11 +108,15 @@ class SubjectInfoView(tk.Frame):
                 self.status_label.config(text=str(e), fg="red")
         
     def delete_subject(self):
+        """Method that deletes subject for the user
+        """
         if self.subject:
             self.subject_service.delete_user_subject(self.subject[0])
 
 
     def confirm_delete(self):
+        """Method to confirm the deletion of a subject
+        """
         window = tk.Toplevel(self)
         window.title("Confirm deleteion")
         window.geometry("300x150")

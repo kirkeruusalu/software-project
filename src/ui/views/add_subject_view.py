@@ -5,6 +5,9 @@ from services.user_service import user_service as usr_svc
 from services.subject_service import SubjectService, SubjectAlreadyExistsError
 
 class AddSubjectView(tk.Frame):
+    """Class responsible for the view the user sees when adding a subject
+
+    """
     def __init__(self, parent, switch_view):
         super().__init__(parent)
         self.switch_view = switch_view
@@ -13,6 +16,8 @@ class AddSubjectView(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
+        """Creates widgets that display on the screen
+        """
         tk.Label(self, text="Enter new subject details").pack(pady=10)
 
         tk.Label(self, text="Subject Name").pack()
@@ -32,6 +37,8 @@ class AddSubjectView(tk.Frame):
 
 
     def add_subject(self):
+        """Adds subject that the user inputs (if no errors)
+        """
         subject_name = self.subject_name.get()
         mastery_level = self.mastery_level.get()
 

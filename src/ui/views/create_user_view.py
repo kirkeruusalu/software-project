@@ -4,6 +4,9 @@ from ui.views.ui_helpers import clear_status_label_after_delay
 from services.user_service import user_service as usr_svc, PasswordWrongFormatError, AccountExistsError
 
 class CreateUserView(tk.Frame):
+    """Class responsible for the view of creating a user
+
+    """
     def __init__(self, parent, switch_view):
         super().__init__(parent)
         self.switch_view = switch_view
@@ -11,6 +14,8 @@ class CreateUserView(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
+        """Creates the widgets for user to view
+        """
         tk.Label(self, text = "Here you can create a new user").pack(pady=10)
 
         tk.Label(self, text="New username").pack(pady=10)
@@ -32,6 +37,8 @@ class CreateUserView(tk.Frame):
         self.status_label.pack()
 
     def submit_user(self):
+        """Method for submitting the new created user
+        """
         username = self.username.get()
         password = self.password.get()
 

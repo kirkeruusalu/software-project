@@ -3,6 +3,9 @@ from tkinter import ttk
 from services.user_service import user_service as usr_svc, PasswordWrongFormatError
 
 class LoginView(tk.Frame):
+    """Class where the user can view the login screen
+
+    """
     def __init__(self, parent, switch_view):
         super().__init__(parent)
         self.switch_view = switch_view
@@ -10,6 +13,8 @@ class LoginView(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
+        """Method that creates widgets for user to see
+        """
         tk.Label(self, text = "Here you can log in to your account").pack()
 
         tk.Label(self, text="Username").pack(pady=10)
@@ -31,6 +36,7 @@ class LoginView(tk.Frame):
         self.status_label.pack()
 
     def login_user(self):
+        """UI method dealing with logging in user"""
         username = self.username.get()
         password = self.password.get()
 

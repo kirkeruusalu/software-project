@@ -5,6 +5,8 @@ from services.subject_service import SubjectService
 from services.user_service import user_service as usr_svc
 
 class TimeSpentVisualizer(tk.Frame):
+    """Class for visualizing the time spent against subjects, using matplotlib
+    """
     def __init__(self, parent, switch_view):
         super().__init__(parent)
         self.switch_view = switch_view
@@ -16,6 +18,8 @@ class TimeSpentVisualizer(tk.Frame):
         parent.protocol("WM_DELETE_WINDOW", self.on_close)
 
     def create_widgets(self):
+        """Method that creates widgets for user to see
+        """
         tk.Label(self, text="Time Spent on Subjects", font=("Helvetica", 14)).pack(pady=10)
 
         self.canvas_frame = tk.Frame(self)
@@ -24,6 +28,8 @@ class TimeSpentVisualizer(tk.Frame):
         tk.Button(self, text="Back to Subjects", command=lambda: self.switch_view("subjects")).pack(pady=10)
     
     def display_time_spent(self):
+        """Method that displays the time spent on a task
+        """
         current_user = self.user_service.current_user
 
         if not self.subject_service:
@@ -40,7 +46,8 @@ class TimeSpentVisualizer(tk.Frame):
         Plots a bar chart of time spent on each subject.
 
         Args:
-            subjects (dict): A dictionary where keys are subject names and values are time spent.
+            names : subject names
+            times : the times spent for each subject respectively
         """
 
         if self.canvas:
@@ -60,5 +67,6 @@ class TimeSpentVisualizer(tk.Frame):
         self.canvas.get_tk_widget().pack()
     
     def on_close(self):
-        """Handle the window close event."""
+        """Handle the window close event
+        """
         self.quit() 

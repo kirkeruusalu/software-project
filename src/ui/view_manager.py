@@ -8,6 +8,8 @@ from ui.views.subject_info_view import SubjectInfoView
 from ui.views.time_spent_view import TimeSpentVisualizer
 
 class ViewManager:
+    """Class for managing and going between the different UI views
+    """
     def __init__(self, root):
         self.root = root
         self.views = {}
@@ -15,6 +17,8 @@ class ViewManager:
         self.initialize_view()
 
     def initialize_view(self):
+        """Method that initializes the view
+        """
         self.views["first"] = FirstView(self.root, self.show_view)
         self.views["create_user"] = CreateUserView(self.root, self.show_view)
         self.views["login"] = LoginView(self.root, self.show_view)
@@ -24,6 +28,9 @@ class ViewManager:
         self.views["visualizer"] = TimeSpentVisualizer(self.root, self.show_view)
 
     def show_view(self, view, data=None):
+        """Method that shows the view
+
+        """
         if self.current_view:
             self.current_view.pack_forget()
 
