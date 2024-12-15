@@ -3,7 +3,7 @@
 ## Study Tracker Project
 This project is a simple tool to help manage progress across various subjects/skills.
 
-Link to the final release is [here]().
+Link to the final release is [here](https://github.com/kirkeruusalu/software-project/releases/tag/final).
 
 Link to the week 5 release is [here](https://github.com/kirkeruusalu/software-project/releases/tag/viikko5)
 
@@ -23,7 +23,7 @@ You can find the architecture document [here](https://github.com/kirkeruusalu/so
 
 You can find the user manual [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/user_manual.md)
 
-You can find the testing document [here]().
+You can find the testing document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/user_manual.md).
 ## How to run the application:
 Installing dependencies:
 ```
