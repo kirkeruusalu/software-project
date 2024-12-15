@@ -13,6 +13,8 @@
 |09.12 | 3                 | Fixing recommendations from code review|
 |10.12 | 4                 | Tests|
 |12.12 | 6                 | More tkinter research, changing mastery|
-|13.13 | 2                 | More tests|
+|13.12 | 2                 | More tests|
+|14.12 | 5                 | Logging time functionality, documentation|
+|15.12 | 8                 | Generating a bar chart, more documentation|
 
-### Total time spent: 51.5 hours
+### Total time spent: 64.5 hours
