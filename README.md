@@ -23,7 +23,7 @@ You can find the architecture document [here](https://github.com/kirkeruusalu/so
 
 You can find the user manual [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/user_manual.md)
 
-You can find the testing document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/user_manual.md).
+You can find the testing document [here](https://github.com/kirkeruusalu/software-project/blob/main/documentation/testing_document.md).
 ## How to run the application:
 Installing dependencies:
 ```
