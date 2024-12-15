@@ -1,6 +1,6 @@
 import tkinter as tk
 from services.user_service import user_service as usr_svc
-from services.subject_service import TimeMustBeIntegerError
+from services.subject_service import TimeMustBeIntegerError, TotalCantBeNegativeError
 from services.subject_service import SubjectService
 from ui.views.ui_helpers import clear_status_label_after_delay
 
@@ -92,6 +92,8 @@ class SubjectInfoView(tk.Frame):
             except TimeMustBeIntegerError as e:
                 self.status_label.config(text=str(e), fg="red")
                 clear_status_label_after_delay(self.status_label)
+            except TotalCantBeNegativeError as e:
+                self.status_label.config(text=str(e), fg="red")
         
     def delete_subject(self):
         if self.subject:

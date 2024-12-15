@@ -107,6 +107,8 @@ class SubjectService:
             raise TimeMustBeIntegerError("The time must be an integer.") from exc
 
         total = int(subject[2]) + int(new_time)
+        if total < 0:
+            raise TotalCantBeNegativeError("The total time cant be negative")
         self._subject_repository.log_time(self._current_user, subject[0], total)
 
     def get_time_spent(self, name):
@@ -138,3 +140,6 @@ class SubjectAlreadyExistsError(Exception):
 
 class TimeMustBeIntegerError(Exception):
     """Excpetion raised when attempting to input a non-integer into time"""
+
+class TotalCantBeNegativeError(Exception):
+    """Exception raised when deleting too much time from time logged"""

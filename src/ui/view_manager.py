@@ -5,6 +5,7 @@ from ui.views.login_view import LoginView
 from ui.views.user_subjects_view import UserSubjectsView
 from ui.views.add_subject_view import AddSubjectView
 from ui.views.subject_info_view import SubjectInfoView
+from ui.views.time_spent_view import TimeSpentVisualizer
 
 class ViewManager:
     def __init__(self, root):
@@ -20,6 +21,7 @@ class ViewManager:
         self.views["subjects"] = UserSubjectsView(self.root, self.show_view)
         self.views["add_subject"] = AddSubjectView(self.root, self.show_view)
         self.views["subject_info"] = SubjectInfoView(self.root, self.show_view)
+        self.views["visualizer"] = TimeSpentVisualizer(self.root, self.show_view)
 
     def show_view(self, view, data=None):
         if self.current_view:
@@ -33,3 +35,6 @@ class ViewManager:
 
         elif isinstance(self.current_view, SubjectInfoView) and data:
             self.current_view.display_subject(data)
+        
+        elif isinstance(self.current_view,TimeSpentVisualizer):
+            self.current_view.display_time_spent()

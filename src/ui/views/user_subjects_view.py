@@ -22,6 +22,9 @@ class UserSubjectsView(tk.Frame):
 
         tk.Button(self, text="Add Subject", 
                   command=lambda: self.switch_view("add_subject")).pack(pady=10)
+        
+        tk.Button(self, text="Visualize your subjects",
+                  command=lambda: self.switch_view("visualizer")).pack(pady=10)
 
         tk.Button(self, text="Log out",
                   command=self.log_out).pack(pady=10)
