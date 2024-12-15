@@ -1,10 +1,9 @@
 import tkinter as tk
-from tkinter import ttk
 from services.user_service import user_service as usr_svc
+from services.subject_service import TimeMustBeIntegerError
 from services.subject_service import SubjectService
 from ui.views.ui_helpers import clear_status_label_after_delay
-from repositories.subject_repository import SubjectRepository
-from services.subject_service import TimeMustBeIntegerError
+
 
 class SubjectInfoView(tk.Frame):
     def __init__(self, parent, switch_view):
@@ -73,7 +72,6 @@ class SubjectInfoView(tk.Frame):
 
     def update_mastery_level(self):
         new_level = self.selected_mastery.get()
-        #subject = SubjectRepository()
 
         if self.subject:
             self.subject_service.update_mastery_level(self.subject[0], new_level)
@@ -83,14 +81,12 @@ class SubjectInfoView(tk.Frame):
 
     def log_time(self):
 
-        subject = SubjectRepository()
         time = self.time_entry.get()
         if time and self.subject:
             try:
                 self.subject_service.log_time_spent(self.subject[0], time)
                 updated_total_time = self.subject_service.get_time_spent(self.subject[0])
                 self.log_time_label.config(text=f"Total time studying: {updated_total_time}")
-            #subject.check_subject_in_db(self.user_service.current_user.username)
                 self.status_label.config(text="Time logged successfully", fg="green")
                 clear_status_label_after_delay(self.status_label)
             except TimeMustBeIntegerError as e:

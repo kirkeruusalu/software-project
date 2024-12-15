@@ -46,3 +46,16 @@ class TestUserService(unittest.TestCase):
             self.test_service.validate_credentials("kirke", "password2")
 
         self.assertTrue("Incorrect username or password" in str(context.exception))
+
+    def test_create_user_account_exists(self):
+        self.test_service.create_user("kirke", "password1")
+        with self.assertRaises(AccountExistsError) as context:
+            self.test_service.create_user("kirke", "password2")
+
+        self.assertTrue("This username exists, choose a new one" in str(context.exception))
+    
+    def test_login_user_success(self):
+        self.test_service.create_user("kirke", "password1")
+        self.test_service.login_user("kirke", "password1")
+
+        self.assertEqual(self.test_service.current_user, User("kirke", "password1"))

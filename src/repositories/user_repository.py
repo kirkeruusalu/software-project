@@ -69,12 +69,7 @@ class UserRepository:
         cursor = self._connection.cursor()
 
         cursor.execute("""
-            delete from
-                users
-            where
-                username=:c""",
-                       {"c": username}
-                       )
+            delete from users where username=:c""", {"c": username})
         self._connection.commit()
 
 user_repository = UserRepository()

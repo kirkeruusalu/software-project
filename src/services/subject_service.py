@@ -90,7 +90,7 @@ class SubjectService:
         subject = self.find_subject(name)
 
         self._subject_repository.update_mastery(self._current_user, subject[0], new_level)
-  
+
     def log_time_spent(self, name, new_time):
         """Adds to the total time spent studying a subject
 
@@ -108,14 +108,33 @@ class SubjectService:
 
         total = int(subject[2]) + int(new_time)
         self._subject_repository.log_time(self._current_user, subject[0], total)
-        
+
     def get_time_spent(self, name):
+        """Retrieves the total time logged by user for subject
+
+        Args:
+            name (str): name of subject
+
+        Returns:
+            time (int): returns the third value from the corresponding database row
+        """
         subject = self.find_subject(name)
         return subject[2]
 
+    def get_mastery_level(self, name):
+        """Retrieves the mastery_level for the given subject
+
+        Args:
+            name (str): name of subject
+
+        Returns:
+            mastery_level (str): returns the second value from the corresponding database row
+        """
+        subject = self.find_subject(name)
+        return subject[1]
+
 class SubjectAlreadyExistsError(Exception):
     """Exception raised when attempting to add a duplicate subject."""
-    pass
 
 class TimeMustBeIntegerError(Exception):
-    pass
+    """Excpetion raised when attempting to input a non-integer into time"""
