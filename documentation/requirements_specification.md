@@ -20,7 +20,7 @@ The UI is a graphic userface, using the Tkinter library.
 - When updating a subject, users can log:
     - their perceived level of mastery in the subtopics 
     - how much time they have spent studying. They can also subtract time, but the time can never be negative
-- A simple chart can be generated that shows bar charts of how much time they have spent on each subject.
+- A simple chart can be generated that shows bar charts of how much time they have spent on each subject (uses matplotlib).
 - The user can deleted a subject as well, during which a pop-up screen will ask them for confirmation if they are sure they want to delete it.
 - The user can log out, after which they will be redirected to the main page. There they can log in again, or create a new account. Their old log-in details are saved in the database.
 
