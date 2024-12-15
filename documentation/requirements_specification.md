@@ -7,19 +7,22 @@ This application is a subject progress tracker to help users assess and keep tra
 There is a regular user role, where the current user can create an account by choosing a username and password, and later log into the same account with their information saved. There can be several users.
 
 ## UI
-The initial UI will be a command-line interface, which will be extended into a GUI as the project progresses. (GUI has been done)
+The UI is a graphic userface, using the Tkinter library.
 
 ## Functionalities
 ### Basic Functionalities
-- When opening the application, the user will see a login screen, where they can either log in with their credentials or create a new account. (done)
-- Once logged in, the user will be presented with a view of their current subjects and progress. (partly done)
-- Users can add subjects and break them down into smaller subtopics (such as Computer Science -> Networks) (almost done)
-- When a user adds a topic, it will automatically be assigned a skill level of beginner (the user can change this manually) (done)
-- Users can log:
-    - their perceived level of mastery in the subtopics (done)
-    - how much time they have spent studying
-    - any notes/comments they have about specific topics
-- A simple chart can be generated that show how the user has progressed over time
+- When opening the application, the user will see a screen prompting them to either go to log in or go to create account.
+    - If they chose create account, they must make a unique username and a password. The password must be at least 5
+      characters long and include a number.
+    - If they chose log in, they must type in the correct credentials.
+- Once logged in, the user will be presented with a view of their current subjects. They can (double)click on each of the subjects to view more info. 
+- Users can add subjects and add a mastery level (beginner, intermediate, or advanced). It will automatically be assigned a level of beginner.
+- When updating a subject, users can log:
+    - their perceived level of mastery in the subtopics 
+    - how much time they have spent studying. They can also subtract time, but the time can never be negative
+- A simple chart can be generated that shows bar charts of how much time they have spent on each subject.
+- The user can deleted a subject as well, during which a pop-up screen will ask them for confirmation if they are sure they want to delete it.
+- The user can log out, after which they will be redirected to the main page. There they can log in again, or create a new account. Their old log-in details are saved in the database.
 
 
 ### Possible future development ideas
