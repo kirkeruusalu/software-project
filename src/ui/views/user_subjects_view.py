@@ -60,7 +60,7 @@ class UserSubjectsView(tk.Frame):
             for subject in subjects:
                 self.subjects_listbox.insert(tk.END, f"{subject['name']}")
         else:
-            self.subjects_listbox.insert(tk.END, "No subjects found.")
+            self.subjects_listbox.insert(tk.END, "No subjects found")
         
     def log_out(self):
         """Method that logs out a user in the UI
@@ -69,9 +69,12 @@ class UserSubjectsView(tk.Frame):
         self.switch_view("first")
 
     def user_selection(self, item):
-        """Method for selecting a user
+        """Method for selecting an item
         """
         index = self.subjects_listbox.curselection()[0]
         selected_item = self.subjects_listbox.get(index)
+        if selected_item == "No subjects found":
+            self.status_label.config(text="No subjects available to view.", fg="red")
+            return
         self.switch_view("subject_info", selected_item)
 
